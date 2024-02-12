@@ -1,5 +1,14 @@
 
 
+print("Pasirinkite norima atlikti operacija:")
+
+print("Iveskite x")
+
+print("Iveskite y")
+
+print("Atsakymas: ")
+
+
 def sudetis(x, y):
     return x + y
 
