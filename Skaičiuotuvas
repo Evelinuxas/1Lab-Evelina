@@ -28,3 +28,16 @@ def skaiciuotuvas():
     y = float(input("Įveskite y: "))
 
 
+    if operacija == '1':
+        print("Sudeties atsakymas: ", sudetis(x, y))
+    elif operacija == '2':
+        print("Atimties atsakymas: ", atimtis(x, y))
+    elif operacija == '3':
+        print("Daugybos atsakymas: ", daugyba(x, y))
+    elif operacija == '4':
+        print("Dalybos atsakymas: ", dalyba(x, y))
+    else:
+        print("Neteisingas operacijos numeris")
+
+# Paleidziame skaiciuotuvo funkcija
+skaiciuotuvas()
