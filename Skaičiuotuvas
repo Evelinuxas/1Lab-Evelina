@@ -24,4 +24,7 @@ def skaiciuotuvas():
 
     operacija = input("Įveskite numerį operacijai: ")
 
+    x = float(input("Įveskite x: "))
+    y = float(input("Įveskite y: "))
+
 
