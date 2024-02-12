@@ -1,6 +1,6 @@
 
 
-def sudetis(x, y):
+def sudėtis(x, y):
     return x + y
 
 def atimtis(x, y):
@@ -16,7 +16,7 @@ def dalyba(x, y):
         return "Dalyba iš nulio negalima"
     
 def skaiciuotuvas():
-    print("Pasirinkite norima atlikti operacija:")
+    print("Pasirinkite norimą atlikti operaciją:")
     print("1. Sudėtis")
     print("2. Atimtis")
     print("3. Daugyba")
@@ -29,7 +29,7 @@ def skaiciuotuvas():
 
 
     if operacija == '1':
-        print("Sudeties atsakymas: ", sudetis(x, y))
+        print("Sudėties atsakymas: ", sudėtis(x, y))
     elif operacija == '2':
         print("Atimties atsakymas: ", atimtis(x, y))
     elif operacija == '3':
