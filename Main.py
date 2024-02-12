@@ -11,7 +11,12 @@ def funkcija():
     print(kintamasis2)
     print(f'test:{kintamasis2}{kintamasis}') #Komentarai
 
+funkcija()
 """
        Komentaras
 
 """
+'''
+    Komentaras1
+'''
+

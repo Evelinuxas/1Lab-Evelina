@@ -1,0 +1,22 @@
+
+
+def sudetis(x, y):
+    return x + y
+
+def atimtis(x, y):
+    return x - y
+
+def daugyba(x, y):
+    return x * y
+
+def dalyba(x, y):
+    if y != 0:
+        return x / y
+    else:
+        return "Dalyba iš nulio negalima"
+
+# Testavimas
+print("Sudėtis: ", sudetis(10, 5))
+print("Atimtis: ", atimtis(10, 5))
+print("Daugyba: ", daugyba(10, 5))
+print("Dalyba: ", dalyba(10, 5))
