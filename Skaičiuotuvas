@@ -38,6 +38,6 @@ def skaiciuotuvas():
         print("Dalybos atsakymas: ", dalyba(x, y))
     else:
         print("Neteisingas operacijos numeris")
-
+while True:
 # Paleidziame skaiciuotuvo funkcija
-skaiciuotuvas()
+    skaiciuotuvas()
