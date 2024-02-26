@@ -12,16 +12,26 @@ app = Flask(__name__)
 
 skaicius = 0 # apsirasome kintamaji ( Globalus )
 
-def sudetis(pirmas,antras):
-        return pirmas+antras
+def sudetis(x,y):
+        return x+y
 
+def atimtis(x, y):
+    return x - y
 
+def daugyba(x, y):
+    return x * y
+
+def dalyba(x, y):
+    if y != 0:
+        return x / y
+    else:
+        return "Dalyba iš nulio negalima"
 
 
 @app.route("/") # Route 1
 def hello_world():
 
-    return f"""
+    return "Labas" """
                 <form action="/skaicius">
                     <label for="test">skaicius 1</label><br>
                         <input type="text" id="test" name="test" value="0"><br>
@@ -31,10 +41,6 @@ def hello_world():
                         <input type="text" id="test2" name="test2" value="0"><br><br>
                         </br></br>
                         
-                    <label for="[[__ID__]]">skaicius 2</label><br>   
-                        <input type="text" id="[[__ID__]]" name="[[__ID__]]" value="0"><br><br>
-                        </br></br>
-
                     <input type="submit" value="Submit">
                 </form> 
             """
@@ -52,17 +58,16 @@ def sakyk_labas():
     '''
 
 @app.route("/skaicius") # Route 3
-def skaiciavimo():
+def skaiciuoti():
+ if not request.args.get("test") or not request.args.get("test2"):
+    return "Nera argumento"
     #UZKLAUSA. ARGUMENTAI. METODAS()
     skaicius = request.args.get("test") ### Pasiimam argumenta is URL pvz.: /skaicius?test=100
     skaicius2 = request.args.get("test2") ### Pasiimam argumenta 2 is URL pvz.: /skaicius?test2=100
 
-    suma = sudetis(int(skaicius2),int(skaicius))
+    suma = sudetis(int(skaicius),int(skaicius2))
 
-    return f"Tavo ivestas skaicius: {suma}"
-
-
-
+    return f"Tavo skaiciu suma: {suma}"
 
 
 if __name__ == "__main__":
