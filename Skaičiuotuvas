@@ -1,10 +1,3 @@
-''' 1 susidiegiame Flask
-        pip3 install Flask
-        pip install Flask
-''' 
-
-# 2. Importuojame
-
 from flask import Flask, request
 app = Flask(__name__)
 
@@ -25,7 +18,7 @@ def dalyba(x, y):
     if y != 0:
         return x / y
     else:
-        return "Dalyba iš nulio negalima"
+        return "Dalyba is nulio negalima"
 
 
 @app.route("/") # Route 1
@@ -42,7 +35,7 @@ def hello_world():
                         </br></br>
 
                     <label for="veiksmas">Matematinis veiksmas</label><br>   
-                        <input type="text" id="veiksmas" name="veiksmas" value="0"><br><br>
+                        <input type="text" id="veiksmas" name="Matematinis veiksmas" value="0"><br><br>
                         </br></br>   
                     <input type="submit" value="Submit">
                 </form> 
