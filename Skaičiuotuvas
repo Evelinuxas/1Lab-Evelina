@@ -53,9 +53,9 @@ def skaiciuoti():
     if not request.args.get("test") or not request.args.get("test2"):
         return "Nera argumento" #Kad programa pasileistu, reikia naudoti if funkcija, kad vartotojui pranest, kad reikia irasyt reiksmes
     #UZKLAUSA. ARGUMENTAI. METODAS()
-skaicius = request.args.get("test") ### Pasiimam argumenta is URL 
-skaicius2 = request.args.get("test2") ### Pasiimam argumenta 2 is URL
-operacija = request.args.get("veiksmas") ### Pasiimam argumenta 3 is URL
+    skaicius = request.args.get("test") ### Pasiimam argumenta is URL 
+    skaicius2 = request.args.get("test2") ### Pasiimam argumenta 2 is URL
+    operacija = request.args.get("veiksmas") ### Pasiimam argumenta 3 is URL
 
 
     if operacija == '+':
