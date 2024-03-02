@@ -93,13 +93,13 @@ def skaiciuotuvas():
     y = float(input("Iveskite y: "))
 
 
-    if operacija == '1':
+    if operacija == '+':
         print("Sudėties atsakymas: ", sudėtis(x, y))
-    elif operacija == '2':
+    elif operacija == '-':
         print("Atimties atsakymas: ", atimtis(x, y))
-    elif operacija == '3':
+    elif operacija == '*':
         print("Daugybos atsakymas: ", daugyba(x, y))
-    elif operacija == '4':
+    elif operacija == '/':
         print("Dalybos atsakymas: ", dalyba(x, y))
     else:
         print("Neteisingas operacijos numeris")
