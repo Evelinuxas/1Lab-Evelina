@@ -50,32 +50,32 @@ def sakyk_labas():
 
 @app.route("/skaicius") # Route 3
 def skaiciuoti():
- if not request.args.get("test") or not request.args.get("test2"):
-    return "Nera argumento" #Kad programa pasileistu, reikia naudoti if funkcija, kad vartotojui pranest, kad reikia irasyt reiksmes
+    if not request.args.get("test") or not request.args.get("test2"):
+        return "Nera argumento" #Kad programa pasileistu, reikia naudoti if funkcija, kad vartotojui pranest, kad reikia irasyt reiksmes
     #UZKLAUSA. ARGUMENTAI. METODAS()
 skaicius = request.args.get("test") ### Pasiimam argumenta is URL 
 skaicius2 = request.args.get("test2") ### Pasiimam argumenta 2 is URL
 operacija = request.args.get("veiksmas") ### Pasiimam argumenta 3 is URL
 
 
-if operacija == '+':
-    suma2 = sudetis(int(skaicius),int(skaicius2))
-    return f"Tavo skaiciu suma: {suma2}"
+    if operacija == '+':
+        suma2 = sudetis(int(skaicius),int(skaicius2))
+        return f"Tavo skaiciu suma: {suma2}"
  
-elif operacija == '-':
-    atimtis2 = atimtis(int(skaicius),int(skaicius2))
-    return f"Tavo skaiciu atimtis: {atimtis2}"
+    elif operacija == '-':
+        atimtis2 = atimtis(int(skaicius),int(skaicius2))
+        return f"Tavo skaiciu atimtis: {atimtis2}"
 
-elif operacija == '*':
-    daugyba2 = daugyba(int(skaicius),int(skaicius2))
-    return f"Tavo skaiciu daugyba: {daugyba2}"
+    elif operacija == '*':
+        daugyba2 = daugyba(int(skaicius),int(skaicius2))
+        return f"Tavo skaiciu daugyba: {daugyba2}"
 
-elif operacija == '/':
-    dalyba2 = dalyba(int(skaicius),int(skaicius2))
-    return f"Tavo skaiciu dalyba: {dalyba2}"
+    elif operacija == '/':
+        dalyba2 = dalyba(int(skaicius),int(skaicius2))
+        return f"Tavo skaiciu dalyba: {dalyba2}"
 
-else:
-    return f"Tavo matematinis ženklas neatitinka reikalavimų, bandyk iš naujo"
+    else:
+        return f"Tavo matematinis ženklas neatitinka reikalavimų, bandyk iš naujo"
 
 if __name__ == "__main__":
     app.run()
