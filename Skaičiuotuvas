@@ -37,7 +37,7 @@ def hello_world():
                     <label for="veiksmas">Palikite vieną norimo atlikti matematinio veiksmo ženklą </label><br>   
                         <input type="text" id="veiksmas" name="veiksmas" value="+-*/"><br><br>
                         </br></br>   
-                    <input type="submit" value="Skaiciuoti">
+                    <input type="submit" value="Skaičiuoti">
                 </form> 
             """
 
