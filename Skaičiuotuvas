@@ -26,18 +26,18 @@ def hello_world():
 
     return "Labas" """
                 <form action="/skaicius">
-                    <label for="test">skaicius 1</label><br>
-                        <input type="text" id="test" name="test" value="0"><br>
+                    <label for="test">Įrašykite pirmą skaičių</label><br>
+                        <input type="text" id="test" name="test" value=" "><br>
                         </br></br>
 
-                    <label for="test2">skaicius 2</label><br>
-                        <input type="text" id="test2" name="test2" value="0"><br><br>
+                    <label for="test2">Įrašykite antrą skaičių</label><br>
+                        <input type="text" id="test2" name="test2" value=" "><br><br>
                         </br></br>
 
-                    <label for="veiksmas">Matematinis veiksmas</label><br>   
-                        <input type="text" id="veiksmas" name="Matematinis veiksmas" value="0"><br><br>
+                    <label for="veiksmas">Palikite vieną norimo atlikti matematinio veiksmo ženklą </label><br>   
+                        <input type="text" id="veiksmas" name="veiksmas" value="+ - * /"><br><br>
                         </br></br>   
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Skaiciuoti">
                 </form> 
             """
 
