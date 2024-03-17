@@ -21,9 +21,9 @@ def dalyba(x, y):
 
 def generate_image(result, animal):
     if animal.lower() == 'katė':
-        image_path = "static/Kate.png"
+        image_path = "static/result_images/Kate.png"
     elif animal.lower() == 'šuo':
-        image_path = "static/suo.jpg"
+        image_path = "static/result_images/suo.jpg"
     else:
         return None
 
