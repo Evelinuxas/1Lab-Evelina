@@ -28,11 +28,14 @@ def generate_image(result):
     # Sukuriamas draw objektas
     draw = ImageDraw.Draw(image)
     
-    # Sukuriamas šriftas
+    # Pridėkite kvadratą
+    draw.rectangle([(20, 20), (80, 80)], fill="blue", outline="black")  # Kvadratas iš kairės viršuje
+    
+    # Sukuriamas šriftas (Arial, dydis 36)
     font = ImageFont.truetype("arial.ttf", 36)
     
     # Nubraižomas tekstas
-    draw.text((50, 20), str(result), fill=(0, 0, 0), font=font)
+    draw.text((50, 20), str(result), fill=(255, 255, 255), font=font)  # Tekstas baltos spalvos
     
     # Išsaugomas paveikslėlis
     image_path = f"static/result_images/{result}.png"
