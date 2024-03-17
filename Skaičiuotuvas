@@ -1,12 +1,13 @@
 from flask import Flask, request
+from PIL import Image, ImageDraw, ImageFont
+import os
+
 app = Flask(__name__)
 
+skaicius = 0
 
-
-skaicius = 0 # apsirasome kintamaji ( Globalus )
-
-def sudetis(x,y):
-        return x+y
+def sudetis(x, y):
+    return x + y
 
 def atimtis(x, y):
     return x - y
@@ -18,66 +19,72 @@ def dalyba(x, y):
     if y != 0:
         return x / y
     else:
-        return "Dalyba is nulio negalima"
+        return "Dalyba iš nulio negalima"
 
+def generate_image(result):
+    # Sukuriamas paveikslėlio objektas
+    image = Image.new("RGB", (200, 100), color=(255, 255, 255))
+    
+    # Sukuriamas draw objektas
+    draw = ImageDraw.Draw(image)
+    
+    # Sukuriamas šriftas
+    font = ImageFont.truetype("arial.ttf", 36)
+    
+    # Nubraižomas tekstas
+    draw.text((50, 20), str(result), fill=(0, 0, 0), font=font)
+    
+    # Išsaugomas paveikslėlis
+    image_path = f"static/result_images/{result}.png"
+    image.save(image_path)
+    
+    return image_path
 
-@app.route("/") # Route 1
+@app.route("/")
 def hello_world():
+    return """
+    <form action="/skaicius">
+        <label for="test">Įrašykite pirmą skaičių</label><br>
+        <input type="text" id="test" name="test" value=" "><br><br>
 
-    return "Labas" """
-                <form action="/skaicius">
-                    <label for="test">Įrašykite pirmą skaičių</label><br>
-                        <input type="text" id="test" name="test" value=" "><br>
-                        </br></br>
+        <label for="test2">Įrašykite antrą skaičių</label><br>
+        <input type="text" id="test2" name="test2" value=" "><br><br>
 
-                    <label for="test2">Įrašykite antrą skaičių</label><br>
-                        <input type="text" id="test2" name="test2" value=" "><br><br>
-                        </br></br>
+        <label for="veiksmas">Palikite vieną norimo atlikti matematinio veiksmo ženklą </label><br>   
+        <input type="text" id="veiksmas" name="veiksmas" value="+-*/"><br><br>   
+        
+        <input type="submit" value="Skaičiuoti">
+    </form>
+    """
 
-                    <label for="veiksmas">Palikite vieną norimo atlikti matematinio veiksmo ženklą </label><br>   
-                        <input type="text" id="veiksmas" name="veiksmas" value="+-*/"><br><br>
-                        </br></br>   
-                    <input type="submit" value="Skaičiuoti">
-                </form> 
-            """
-
-@app.route("/labas")  # Route 2
-def sakyk_labas():
-    global skaicius ## Naudoju globalu kintamaji
-    skaicius = skaicius +1 ## kaskart atidare pridedam 1
-    return f"Labas {skaicius}"
-
-
-@app.route("/skaicius") # Route 3
+@app.route("/skaicius")
 def skaiciuoti():
     if not request.args.get("test") or not request.args.get("test2"):
-        return "Nera argumento" #Kad programa pasileistu, reikia naudoti if funkcija, kad vartotojui pranest, kad reikia irasyt reiksmes
-    #UZKLAUSA. ARGUMENTAI. METODAS()
-    skaicius = request.args.get("test") ### Pasiimam argumenta is URL 
-    skaicius2 = request.args.get("test2") ### Pasiimam argumenta 2 is URL
-    operacija = request.args.get("veiksmas") ### Pasiimam argumenta 3 is URL
+        return "Nera argumento"
 
+    skaicius = request.args.get("test")
+    skaicius2 = request.args.get("test2")
+    operacija = request.args.get("veiksmas")
 
     if operacija == '+':
-        suma2 = sudetis(int(skaicius),int(skaicius2))
-        return f"Skaičių suma: {suma2}"
- 
+        suma = sudetis(int(skaicius), int(skaicius2))
+        result_image_path = generate_image(suma)
+        return f'<img src="{result_image_path}" alt="Rezultatas">'
     elif operacija == '-':
-        atimtis2 = atimtis(int(skaicius),int(skaicius2))
-        return f"Skaičių atimtis: {atimtis2}"
-
+        skirtumas = atimtis(int(skaicius), int(skaicius2))
+        result_image_path = generate_image(skirtumas)
+        return f'<img src="{result_image_path}" alt="Rezultatas">'
     elif operacija == '*':
-        daugyba2 = daugyba(int(skaicius),int(skaicius2))
-        return f"Skaičių daugyba: {daugyba2}"
-
+        sandauga = daugyba(int(skaicius), int(skaicius2))
+        result_image_path = generate_image(sandauga)
+        return f'<img src="{result_image_path}" alt="Rezultatas">'
     elif operacija == '/':
-        dalyba2 = dalyba(int(skaicius),int(skaicius2))
-        return f"Skaičių dalyba: {dalyba2}"
-
+        dalmuo = dalyba(int(skaicius), int(skaicius2))
+        result_image_path = generate_image(dalmuo)
+        return f'<img src="{result_image_path}" alt="Rezultatas">'
     else:
-        return f"Jūsų matematinis ženklas neatitinka reikalavimų, bandykite iš naujo"
+        return "Jūsų matematinis ženklas neatitinka reikalavimų, bandykite iš naujo"
 
 if __name__ == "__main__":
     app.run()
 
-#baigiasi programa
