@@ -21,27 +21,25 @@ def dalyba(x, y):
     else:
         return "Dalyba iš nulio negalima"
 
+
 def generate_image(result):
-    # Sukuriamas paveikslėlio objektas
-    image = Image.new("RGB", (200, 100), color=(255, 255, 255))
-    
+    image_path = "static/result_images/kate.png"  # Pakeiskite į savo paveikslėlio kelią
+    image = Image.open(image_path)
+
     # Sukuriamas draw objektas
     draw = ImageDraw.Draw(image)
-    
-    # Pridėkite kvadratą
-    draw.rectangle([(20, 20), (80, 80)], fill="blue", outline="black")  # Kvadratas iš kairės viršuje
     
     # Sukuriamas šriftas (Arial, dydis 36)
     font = ImageFont.truetype("arial.ttf", 36)
     
-    # Nubraižomas tekstas
-    draw.text((50, 20), str(result), fill=(255, 255, 255), font=font)  # Tekstas baltos spalvos
+    # Nubraižomas tekstas juoda spalva
+    draw.text((50, 20), str(result), fill=(0, 0, 0), font=font)  # Tekstas juodos spalvos
     
     # Išsaugomas paveikslėlis
-    image_path = f"static/result_images/{result}.png"
-    image.save(image_path)
+    result_image_path = f"static/result_images/result.jpg"  # Pakeiskite į norimą išsaugojimo vietą
+    image.save(result_image_path)
     
-    return image_path
+    return result_image_path
 
 @app.route("/")
 def hello_world():
