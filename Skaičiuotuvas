@@ -4,8 +4,6 @@ import os
 
 app = Flask(__name__)
 
-skaicius = 0
-
 def sudetis(x, y):
     return x + y
 
@@ -21,22 +19,19 @@ def dalyba(x, y):
     else:
         return "Dalyba iš nulio negalima"
 
+def generate_image(result, animal):
+    if animal.lower() == 'katė':
+        image_path = "static/Kate.png"
+    elif animal.lower() == 'šuo':
+        image_path = "static/suo.jpg"
+    else:
+        return None
 
-def generate_image(result):
-    image_path = "static/result_images/kate.png"  # Pakeiskite į savo paveikslėlio kelią
     image = Image.open(image_path)
-
-    # Sukuriamas draw objektas
     draw = ImageDraw.Draw(image)
-    
-    # Sukuriamas šriftas (Arial, dydis 36)
     font = ImageFont.truetype("arial.ttf", 36)
-    
-    # Nubraižomas tekstas juoda spalva
     draw.text((50, 20), str(result), fill=(0, 0, 0), font=font)  # Tekstas juodos spalvos
-    
-    # Išsaugomas paveikslėlis
-    result_image_path = f"static/result_images/result.jpg"  # Pakeiskite į norimą išsaugojimo vietą
+    result_image_path = f"static/result_images/result_{animal.lower()}.jpg"
     image.save(result_image_path)
     
     return result_image_path
@@ -52,7 +47,10 @@ def hello_world():
         <input type="text" id="test2" name="test2" value=" "><br><br>
 
         <label for="veiksmas">Palikite vieną norimo atlikti matematinio veiksmo ženklą </label><br>   
-        <input type="text" id="veiksmas" name="veiksmas" value="+-*/"><br><br>   
+        <input type="text" id="veiksmas" name="veiksmas" value="+-*/"><br><br> 
+
+        <label for="gyvunas">Pasirinkite, koks gyvūnas jums labiau patinka (katė ar šuo)</label><br>   
+        <input type="text" id="gyvunas" name="gyvunas" value="katė/šuo"><br><br>   
         
         <input type="submit" value="Skaičiuoti">
     </form>
@@ -66,26 +64,26 @@ def skaiciuoti():
     skaicius = request.args.get("test")
     skaicius2 = request.args.get("test2")
     operacija = request.args.get("veiksmas")
+    gyvunas = request.args.get("gyvunas")
 
     if operacija == '+':
         suma = sudetis(int(skaicius), int(skaicius2))
-        result_image_path = generate_image(suma)
+        result_image_path = generate_image(suma, gyvunas)
         return f'<img src="{result_image_path}" alt="Rezultatas">'
     elif operacija == '-':
         skirtumas = atimtis(int(skaicius), int(skaicius2))
-        result_image_path = generate_image(skirtumas)
+        result_image_path = generate_image(skirtumas, gyvunas)
         return f'<img src="{result_image_path}" alt="Rezultatas">'
     elif operacija == '*':
         sandauga = daugyba(int(skaicius), int(skaicius2))
-        result_image_path = generate_image(sandauga)
+        result_image_path = generate_image(sandauga, gyvunas)
         return f'<img src="{result_image_path}" alt="Rezultatas">'
     elif operacija == '/':
         dalmuo = dalyba(int(skaicius), int(skaicius2))
-        result_image_path = generate_image(dalmuo)
+        result_image_path = generate_image(dalmuo, gyvunas)
         return f'<img src="{result_image_path}" alt="Rezultatas">'
     else:
         return "Jūsų matematinis ženklas neatitinka reikalavimų, bandykite iš naujo"
 
 if __name__ == "__main__":
     app.run()
-
