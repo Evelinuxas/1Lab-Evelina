@@ -1,6 +1,5 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from PIL import Image, ImageDraw, ImageFont
-import os
 
 app = Flask(__name__)
 
@@ -38,23 +37,7 @@ def generate_image(result, animal):
 
 @app.route("/")
 def hello_world():
-    return """
-    <form action="/skaicius">
-        <label for="test">Įrašykite pirmą skaičių</label><br>
-        <input type="text" id="test" name="test" value=" "><br><br>
-
-        <label for="test2">Įrašykite antrą skaičių</label><br>
-        <input type="text" id="test2" name="test2" value=" "><br><br>
-
-        <label for="veiksmas">Palikite vieną norimo atlikti matematinio veiksmo ženklą </label><br>   
-        <input type="text" id="veiksmas" name="veiksmas" value="+-*/"><br><br> 
-
-        <label for="gyvunas">Pasirinkite, koks gyvūnas jums labiau patinka (katė ar šuo)</label><br>   
-        <input type="text" id="gyvunas" name="gyvunas" value="katė/šuo"><br><br>   
-        
-        <input type="submit" value="Skaičiuoti">
-    </form>
-    """
+    return render_template("index.html")
 
 @app.route("/skaicius")
 def skaiciuoti():
@@ -69,19 +52,19 @@ def skaiciuoti():
     if operacija == '+':
         suma = sudetis(int(skaicius), int(skaicius2))
         result_image_path = generate_image(suma, gyvunas)
-        return f'<img src="{result_image_path}" alt="Rezultatas">'
+        return render_template("result.html", result_image=result_image_path)
     elif operacija == '-':
         skirtumas = atimtis(int(skaicius), int(skaicius2))
         result_image_path = generate_image(skirtumas, gyvunas)
-        return f'<img src="{result_image_path}" alt="Rezultatas">'
+        return render_template("result.html", result_image=result_image_path)
     elif operacija == '*':
         sandauga = daugyba(int(skaicius), int(skaicius2))
         result_image_path = generate_image(sandauga, gyvunas)
-        return f'<img src="{result_image_path}" alt="Rezultatas">'
+        return render_template("result.html", result_image=result_image_path)
     elif operacija == '/':
         dalmuo = dalyba(int(skaicius), int(skaicius2))
         result_image_path = generate_image(dalmuo, gyvunas)
-        return f'<img src="{result_image_path}" alt="Rezultatas">'
+        return render_template("result.html", result_image=result_image_path)
     else:
         return "Jūsų matematinis ženklas neatitinka reikalavimų, bandykite iš naujo"
 
