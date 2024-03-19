@@ -44,29 +44,29 @@ def skaiciuoti():
     if not request.args.get("test") or not request.args.get("test2"):
         return "Nera argumento"
 
-    skaicius = request.args.get("test")
-    skaicius2 = request.args.get("test2")
+    skaicius = int(request.args.get("test"))
+    skaicius2 = int(request.args.get("test2"))
     operacija = request.args.get("veiksmas")
     gyvunas = request.args.get("gyvunas")
 
     if operacija == '+':
-        suma = sudetis(int(skaicius), int(skaicius2))
+        suma = sudetis(skaicius, skaicius2)
         result_image_path = generate_image(suma, gyvunas)
-        return render_template("result.html", result_image=result_image_path)
+        return render_template("result.html", result=suma, result_image=result_image_path)
     elif operacija == '-':
-        skirtumas = atimtis(int(skaicius), int(skaicius2))
+        skirtumas = atimtis(skaicius, skaicius2)
         result_image_path = generate_image(skirtumas, gyvunas)
-        return render_template("result.html", result_image=result_image_path)
+        return render_template("result.html", result=skirtumas, result_image=result_image_path)
     elif operacija == '*':
-        sandauga = daugyba(int(skaicius), int(skaicius2))
+        sandauga = daugyba(skaicius, skaicius2)
         result_image_path = generate_image(sandauga, gyvunas)
-        return render_template("result.html", result_image=result_image_path)
+        return render_template("result.html", result=sandauga, result_image=result_image_path)
     elif operacija == '/':
-        dalmuo = dalyba(int(skaicius), int(skaicius2))
+        dalmuo = dalyba(skaicius, skaicius2)
         result_image_path = generate_image(dalmuo, gyvunas)
-        return render_template("result.html", result_image=result_image_path)
+        return render_template("result.html", result=dalmuo, result_image=result_image_path)
     else:
         return "Jūsų matematinis ženklas neatitinka reikalavimų, bandykite iš naujo"
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
